@@ -1,27 +1,29 @@
-# Weapon tuning administration
+# Настройка оружия
 
-The server creates profiles on its first start:
+[English](en/weapon-tuning-admin.md) · **Русский**
+
+При первом запуске сервер создаёт файлы профилей.
 
 - `config/decimation/weapon-tuning/weapons/<weapon>.json`
 - `config/decimation/weapon-tuning/attachments/<attachment>.json`
 - `config/decimation/weapon-tuning/manifest.json`
 
-Magazine capacity and ammunition types are intentionally not part of these files.
+Вместимость магазинов и типы боеприпасов задаются отдельно.
 
-Creative operators can open the normal attachment screen and press **Weapon editor**. The server checks both creative mode and operator permission. The editor contains:
+В креативе с правами оператора откройте обычный экран обвесов и нажмите **Редактор оружия**. Сервер проверяет режим игры и права оператора. В редакторе доступны следующие вкладки.
 
-- **Parameters** — damage, recoil, aimed/base spread, separate hip-fire spread, fire rate, delays, reload phases, attachment modifiers, and intrinsic weapon features;
-- **Compatibility** — attachments permitted for a selected weapon;
-- **Position** — per-weapon attachment position, rotation, and scale.
+- **Параметры** содержат урон, отдачу, базовый разброс и разброс при прицеливании, отдельный разброс от бедра, темп стрельбы, задержки, фазы перезарядки, модификаторы обвесов и встроенные функции оружия.
+- **Совместимость** задаёт обвесы, разрешённые для выбранного оружия.
+- **Положение** задаёт позицию, поворот и масштаб обвеса для конкретного оружия.
 
-Position values are additional offsets relative to the model's existing anchor. Changes entered in the Position tab are previewed on the currently held weapon. **Save** validates and stores the selected profile, increments the server revision, and sends the resulting profiles to every client. **Defaults** restores the original code-defined values in the draft; press **Save** to persist them.
+Положение задаётся как смещение относительно точки крепления на модели. Предпросмотр виден на оружии в руке. **Сохранить** проверяет и записывает выбранный профиль, увеличивает серверную ревизию и рассылает профили клиентам. **По умолчанию** восстанавливает исходные значения в черновике. Чтобы применить их, нажмите **Сохранить**.
 
-Optical attachments expose two independent first-person ADS values. **Optical view scale** enlarges the sight picture around the eyepiece, while **Eyepiece proximity** moves the held weapon towards or away from the camera during the aiming transition. Neither value changes the world model or the actual magnification/FOV.
+Для оптических обвесов доступны две независимые настройки прицеливания от первого лица. Масштаб изображения в прицеле увеличивает картинку вокруг окуляра. Приближение окуляра двигает оружие к камере или от неё во время перехода к прицеливанию. Модель в мире, фактическая кратность и поле зрения сохраняют прежние значения.
 
-Intrinsic weapon switches belong to the weapon profile, not an attachment profile:
+Переключатели встроенных функций находятся в профиле оружия.
 
-- **Integrated suppressor** suppresses the shot, hides the muzzle flash, and uses the normal suppressor heat system. It does not modify recoil, spread, or aiming speed.
-- **Integrated flash hider** only hides the muzzle flash.
-- **Integrated bipod** uses the same supported-position check and active recoil/spread modifiers as the detachable bipod.
+- **Встроенный глушитель** приглушает выстрел, скрывает дульную вспышку и использует обычный нагрев глушителя. Отдача, разброс и скорость прицеливания сохраняются.
+- **Встроенный пламегаситель** скрывает только дульную вспышку.
+- **Встроенные сошки** используют ту же проверку опоры и те же модификаторы отдачи и разброса, что и съёмные сошки.
 
-Profiles may also be edited while the server is stopped. Invalid numbers, unsafe identifiers, oversized arrays, and malformed payloads are rejected or clamped during loading and network synchronization.
+Профили можно редактировать при остановленном сервере. При загрузке и сетевой синхронизации некорректные числа, недопустимые идентификаторы, слишком большие массивы и повреждённые данные отклоняются или ограничиваются допустимым диапазоном.

@@ -1,5 +1,7 @@
 # Серверные настройки Decimation Rework
 
+[English](en/SERVER_SETTINGS.md) · **Русский**
+
 Пути указаны относительно рабочей папки сервера. Основной файл мода — `config/decimation/server.properties`. Обычный `server.properties` в корне относится к Minecraft. После изменения параметров мода выполните `/deciserver reload`. Для отдельных подсистем используйте способы применения из таблицы ниже.
 
 ## Основной файл

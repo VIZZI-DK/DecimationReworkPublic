@@ -1,19 +1,21 @@
 # Decimation Rework
 
-Документация для администраторов серверов Decimation Rework.
+**English** · [Русский](README.ru.md)
 
-## С чего начать
+Documentation for Decimation Rework server administrators.
 
-- [Админ-хаб и инструменты](docs/ADMIN_HUB.md)
-- [Справочник команд](docs/ADMIN_COMMANDS_RU.md)
-- [Настройки сервера](docs/SERVER_SETTINGS_RU.md)
+## Getting started
 
-## Руководства
+- [Administrator hub and tools](docs/en/ADMIN_HUB.md)
+- [Command reference](docs/en/ADMIN_COMMANDS.md)
+- [Server settings](docs/en/SERVER_SETTINGS.md)
 
-- [Территории и флаги зон](docs/zone-flags.md)
-- [Настройка карты, регионов и меток](docs/MAP_ADMIN_GUIDE_RU.md)
-- [Кланы и базы](docs/clan-administration.md)
-- [Редактор лута](docs/loot-system-admin.md)
-- [Популяция зомби](docs/zombie-population.md)
-- [Диалоги NPC и задания](docs/NPC_DIALOGUE_GUIDE.md)
-- [Редактор оружия](docs/weapon-tuning-admin.md)
+## Guides
+
+- [Zones and flags](docs/en/zone-flags.md)
+- [Map, regions, and markers](docs/en/MAP_ADMIN_GUIDE.md)
+- [Clans and bases](docs/en/clan-administration.md)
+- [Loot editor](docs/en/loot-system-admin.md)
+- [Zombie population](docs/en/zombie-population.md)
+- [NPC dialogue and quests](docs/en/NPC_DIALOGUE_GUIDE.md)
+- [Weapon tuning](docs/en/weapon-tuning-admin.md)

@@ -1,47 +1,48 @@
-# DecimationRework loot system
+# Система лута Decimation Rework
 
-The searched-block and supply-drop loot system is server authoritative. Player corpses and zombie drops are not managed by this system.
+[English](en/loot-system-admin.md) · **Русский**
 
-## Files
+Сервер управляет лутом из обыскиваемых блоков и поставок. Тела игроков и добыча с зомби обслуживаются отдельно.
 
-The server creates the following files on first start:
+## Файлы
 
-- `config/decimation/loot/groups/*.json` — reusable weighted item groups;
-- `config/decimation/loot/tables/*.json` — ordered rolls over groups;
-- `config/decimation/loot/sources.json` — block-type bindings and respawn settings;
-- `config/decimation/loot/state/dimension_<id>/region_*/` — generated shared inventories and real-time timers in regional snapshots and journals. Older `dimension_<id>.dat` files are migration inputs.
+При первом запуске сервер создаёт следующие файлы.
 
-Configuration writes are atomic and keep `.backup` files. Runtime state is not intended for manual editing.
-Built-in group and table names are generated as plain English text and are not localization keys. Existing administrator-edited names are preserved.
+- `config/decimation/loot/groups/*.json` хранит группы предметов с весами.
+- `config/decimation/loot/tables/*.json` хранит последовательности выборок из групп.
+- `config/decimation/loot/sources.json` хранит привязки типов блоков и настройки обновления.
+- `config/decimation/loot/state/dimension_<id>/region_*/` хранит сгенерированные общие инвентари и таймеры реального времени в региональных снимках и журналах. Старые файлы `dimension_<id>.dat` используются при переносе данных.
 
-## Administrator commands
+Конфиги сохраняются атомарно с копиями `.backup`. Текущее состояние редактирует сервер. Названия встроенных групп и таблиц хранятся как обычный английский текст. Изменённые администратором названия сохраняются.
 
-- `/deciserver loot gui` opens the visual editor. The command and editor require operator permissions. The editor works in Survival.
-- `/deciserver loot reload` validates and reloads JSON files. Invalid files do not replace the last valid in-memory configuration.
-- `/deciserver loot cleanup` removes tracked state whose source block is missing in already loaded chunks. It never loads chunks.
-- `/deciserver loot cleanup --load` explicitly loads tracked chunks in small batches, checks them, and queues command-loaded chunks for unloading.
+## Команды администратора
 
-## Editor workflow
+- `/deciserver loot gui` открывает редактор. Для команды и действий в редакторе нужны права оператора. Редактор работает в выживании.
+- `/deciserver loot reload` проверяет и перечитывает JSON. Если проверка не проходит, сервер продолжает использовать последнюю рабочую конфигурацию.
+- `/deciserver loot cleanup` удаляет сохранённое состояние источников, чьи блоки отсутствуют в уже загруженных чанках.
+- `/deciserver loot cleanup --load` дополнительно загружает отслеживаемые чанки небольшими порциями, проверяет их и ставит загруженные командой чанки в очередь выгрузки.
 
-### Groups
+## Работа с редактором
 
-A group contains weighted complete `ItemStack` values. Add the held stack to preserve its complete NBT, or select an item from the searchable catalog organized by the active Minecraft and Decimation creative tabs. Configure minimum and maximum count, weight, and whether the same entry may repeat in one generation. Custom groups may be copied or deleted when no table references them. Built-in groups may be edited, disabled, copied, and restored, but not deleted.
+### Группы
 
-### Tables
+Группа содержит полные `ItemStack` с весами. Добавьте стопку из руки, чтобы сохранить NBT целиком, или выберите предмет в каталоге с поиском по активным вкладкам креатива Minecraft и Decimation. Задайте минимальное и максимальное количество, вес и возможность повторить запись при одной генерации. Пользовательские группы можно копировать и удалять, когда на них не ссылается таблица. Встроенные группы можно редактировать, отключать, копировать и восстанавливать.
 
-A table executes group rolls from top to bottom. Every roll has an activation chance, minimum and maximum draw count, and duplicate policy. The arrow buttons change roll order. `Maximum occupied slots` caps the generated result even when group draws request more items.
+### Таблицы
 
-Zone modifiers use the existing zone types, not individual named zones. Click a zone row to select it and its checkbox to enable it. Quantity and rare-loot multipliers combine when multiple zone types overlap. The source block coordinates determine the active zone.
+Таблица выполняет выборки сверху вниз. У каждой выборки есть шанс срабатывания, минимальное и максимальное число попыток и правила повторения. Кнопки со стрелками меняют порядок. Параметр максимального числа занятых слотов ограничивает итог, даже когда выборки запрашивают больше предметов.
 
-### Sources
+Модификаторы используют существующие типы зон. Чтобы включить модификатор, выберите строку типа и поставьте галочку. Коэффициенты количества и редкого лута сочетаются, когда несколько типов зон пересекаются. Активная зона определяется координатами блока-источника.
 
-A source binds one registered block type to a table. Bindings apply to all blocks of that type, not one world coordinate. The table picker searches both its readable name and system ID. A source also controls inventory size, real elapsed respawn days/hours/minutes/seconds, search sound, safe-zone access, and enabled state. Add a block from the held item or searchable block catalog.
+### Источники
 
-Built-in source bindings cannot be deleted. A custom source can be removed without deleting any world block; it only removes that block type's loot behavior.
+Источник привязывает один зарегистрированный тип блока к таблице. Привязка действует на все блоки этого типа. Поиск таблицы работает по названию и системному ID. Источник также задаёт размер инвентаря, интервал обновления в реальных днях, часах, минутах и секундах, звук обыска, доступ в сейфзоне и включение. Добавьте блок из руки или из каталога блоков с поиском.
 
-### Simulator
+Удаление доступно для пользовательских источников. Оно убирает лут у типа блока, сохраняя блоки в мире.
 
-Select a table and run 1, 10, 100, or 1000 local generations. The simulator uses the same generator as the server and does not modify world loot. It reports average occupied slots, how often each item appeared, and its average generated quantity. Zone multipliers are intentionally not applied in the base simulation.
+### Симулятор
+
+Выберите таблицу и запустите 1, 10, 100 или 1000 локальных генераций. Симулятор использует тот же генератор, что и сервер, и оставляет лут в мире без изменений. Отчёт показывает среднее число занятых слотов, частоту появления каждого предмета и его среднее количество. Базовая симуляция выполняется без множителей зон.
 
 ### Режиссёр лута
 
@@ -59,16 +60,16 @@ Select a table and run 1, 10, 100, or 1000 local generations. The simulator uses
 
 [Команды режиссёра](ADMIN_COMMANDS_RU.md#лут)
 
-## Respawn behavior
+## Обновление лута
 
-The timer uses real epoch time and survives restarts. It starts only when a ready source is opened and a batch is generated. Reaching the expiry time marks the batch stale, but visible contents are never replaced while somebody has the container open. After all viewers close it, the next opening discards any stale leftovers, generates a new shared batch, and starts a new timer. Leaving unwanted items behind therefore cannot block future respawns forever.
+Таймер использует реальное время и сохраняется при перезапуске. Он начинается, когда игрок открывает готовый источник и сервер генерирует новую партию. По истечении таймера партия помечается устаревшей. Пока контейнер открыт хотя бы у одного игрока, видимое содержимое сохраняется. Когда все его закроют, следующее открытие удалит остатки устаревшей партии, сгенерирует новый общий лут и запустит новый таймер.
 
-All players opening the same source instance see the same server inventory and receive normal container slot updates. Breaking or replacing a tracked source block removes its stored state immediately.
+Все игроки, открывшие один и тот же источник, видят общий серверный инвентарь и получают обычные обновления слотов. Разрушение или замена отслеживаемого блока сразу удаляет его состояние.
 
-## Safe editing notes
+## Безопасное редактирование
 
-- Save requests are revision checked, size limited, rate limited, validated, and written only after server-side verification of operator permissions.
-- Large editor snapshots and saves are split into bounded 24 KiB chunks to remain below Minecraft 1.7.10's client custom-payload limit.
-- A stale editor cannot overwrite changes saved by another administrator.
-- Existing open batches keep the table revision that generated them; configuration reloads affect future generations.
-- Keep group and table IDs lowercase and stable when editing JSON manually. The GUI generates IDs automatically.
+- Сервер проверяет права оператора, ревизию, размер, частоту и содержимое запросов перед сохранением.
+- Большие снимки и запросы на сохранение делятся на части по 24 КиБ, чтобы уложиться в ограничение пользовательского пакета клиента Minecraft 1.7.10.
+- Устаревший черновик отклоняется, если другой администратор уже сохранил изменения.
+- Открытые партии сохраняют ревизию таблицы, по которой они были созданы. Перезагрузка настроек применяется к будущей генерации.
+- При ручном редактировании JSON сохраняйте ID групп и таблиц в нижнем регистре и без изменений. Редактор создаёт ID автоматически.
