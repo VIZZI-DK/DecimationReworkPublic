@@ -32,7 +32,7 @@ Commands are shown as entered in game chat. Omit the leading slash in the server
 
 Legacy `/deciserver` subcommands are supported for scripts. `supplydropspawn`, `addsupplydropspawn`, and `undosupplydropspawn` map to `supplydrop spawn`, `add`, and `undo`. `addplayerspawn` and `undoplayerspawn` map to `playerspawn add` and `undo`.
 
-Player spawns are stored as X/Y/Z coordinates without a dimension. Supply drop points store X/Z for the primary world. The automatic supply drop loader skips the first line of `supplydrop.properties`. With a single point in the list, a manual drop can work while the automatic drop finds no points.
+Player spawns are stored as X/Y/Z coordinates without a dimension. Supply drop points store X/Z for the primary world. Automatic supply drops can use any valid entry in `supplydrop.properties`, including the first. Blank lines and comments beginning with `#` are skipped.
 
 ## Loot
 

@@ -30,6 +30,8 @@ Migrated safe zones retain the protection exception for players with an active c
 
 Tags such as `military`, `police`, and legacy types preserve loot category compatibility. Enter group multipliers as `groupID=1.5,anotherGroup=0.5`, with values from 0 to 10. They multiply existing table modifiers and the Loot Director adjustment. Where zones overlap, priority selects one zone multiplier.
 
+Raids on player structures require `break`. Bullets also check `projectiles`, and fragmentation grenades check both `explosion_damage` and `explosion_blocks`. These flags are evaluated at the affected section.
+
 ## Actions
 
 Events can trigger on entry, exit, or while inside. An action can run a command, trigger a random respawn, send a message, or play a sound by resource ID. The server replaces `{player}` with the player's name. A command may start with a slash.
