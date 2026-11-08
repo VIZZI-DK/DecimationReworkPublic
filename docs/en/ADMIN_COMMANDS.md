@@ -77,7 +77,7 @@ Player spawns are stored as X/Y/Z coordinates without a dimension. Supply drop p
 | `/deci map marker list [page]` | Chat or console | Lists markers and their IDs. |
 | `/deci map marker add <name> <category> <x> <z>` | In-game | Adds a marker in the current dimension. |
 | `/deci map marker remove <id>` | Chat or console | Removes a public marker. |
-| `/turf create <name>`, `/turf remove`, `/turf reload` | In-game | Manages legacy turfs. Creation uses your selection, and removal uses the turf at your position. Turfs are stored separately from zones and clan bases. |
+| `/turf create <name>`, `/turf remove`, `/turf reload` | In-game | Manages legacy turfs. Creation uses your selection, and removal uses the turf at your position. Turfs are stored separately from zones. |
 | `/screenshot <player>` | In-game | Requests a screenshot from an online player's client and opens it in the GUI. |
 
 `/deci` also supports `addcaps`, `fillcaps`, `addhumanity`, `removehumanity`, `pos1`, `pos2`, `expand.up`, `expand.down`, and `getitem`. The legacy subcommands `setcondition.bleeding`, `setcondition.infected`, and `setcondition.irradiatedd` apply a condition to the sender. `/rspawn` is available to players in zones with the `rspawn` flag while out of combat. `/givemethepowerofdeath` toggles the sender's `haunted` state and is available to regular players.
@@ -100,17 +100,7 @@ Run trader commands in-game. The stock editor also requires Creative mode.
 
 ## Clans
 
-Run these commands in-game as an operator. Identify a base by its exact name or UUID. Region operations use your current selection.
-
-| Command | Action |
-| --- | --- |
-| `/clan help`, `/clan base list` | Shows help or lists bases. |
-| `/clan base create <name> [size]` | Creates a base in the current dimension. Valid sizes are `TINY`, `SMALL`, `MEDIUM`, `BIG`, and `LARGE`. The default is `SMALL`. |
-| `/clan base <setbase\|setprotection\|setattack> <base>` | Replaces the base, protection, or attack area. |
-| `/clan base capture <base>` | Requests a capture subject to the capture rules. |
-| `/clan base remove <base>` | Archives the data and removes the base. |
-
-[Clan administration, settings, and journal](clan-administration.md)
+Use the administrator hub for clan settings, verification, and the journal. [Clan administration](clan-administration.md)
 
 ## Distant terrain generation
 

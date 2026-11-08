@@ -14,7 +14,7 @@
 
 - [Территории и флаги зон](docs/zone-flags.md)
 - [Настройка карты, регионов и меток](docs/MAP_ADMIN_GUIDE_RU.md)
-- [Кланы и базы](docs/clan-administration.md)
+- [Администрирование кланов](docs/clan-administration.md)
 - [Редактор лута](docs/loot-system-admin.md)
 - [Популяция зомби](docs/zombie-population.md)
 - [Диалоги NPC и задания](docs/NPC_DIALOGUE_GUIDE.md)

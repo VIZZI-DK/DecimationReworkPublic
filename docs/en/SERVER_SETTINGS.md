@@ -98,7 +98,7 @@ Paths below are relative to `config/decimation/` unless marked as world data or 
 | --- | --- | --- |
 | Zones | `zones.json` | The zone editor saves changes immediately. After a manual edit, use **Reload file** or `/zone reload` with operator permissions. [Schema and flags](zone-flags.md) |
 | Legacy turfs | `turfs.json` | Use `/turf create`, `/turf remove`, and `/turf reload`. |
-| Clans | `clans/config.json`, `clans/data.json`, `clans/journal/`, `clans/archive/` | Use the admin menu for prices, upgrades, income, rewards, application and invitation expiry, and journal limits. Back up both the data and journal. [Clans](clan-administration.md) |
+| Clans | `clans/config.json`, `clans/data.json`, `clans/journal/` | Use the admin menu for verification pricing, member slot upgrades, application and invitation expiry, and journal limits. Back up both the data and journal. [Clans](clan-administration.md) |
 | Loot | `loot/groups/*.json`, `loot/tables/*.json`, `loot/sources.json`, `loot/state/` | The editor saves changes. After a manual edit, run `/deciserver loot reload`. Generated container contents are stored separately from generation rules. [Loot](loot-system-admin.md) |
 | Loot Director | `loot-director/state.json` | Use the Director tab or `/deciserver loot director`. The file stores settings and accumulated state. |
 | Zombie population | `zombies/config.json`, state in world data | The editor changes global limits, areas, points, profiles, and noise settings. Restart after manual edits. [Population settings](zombie-population.md) |

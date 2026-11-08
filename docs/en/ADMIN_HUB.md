@@ -21,7 +21,7 @@ The Requirements column lists any additional conditions. To manage an NPC or tra
 | NPCs | Trader and catalogue | Creative mode, aim at a trader | Open the trade screen and edit its stock. Catalogs belong to trader types, so editing one affects other NPCs of the same type. |
 | Items | Weapon Editor | Creative mode | Adjust damage, recoil, spread, delays, attachment compatibility, and attachment positions. Saving synchronizes the profile with clients. [Settings and preview](weapon-tuning-admin.md) |
 | Players | Player spawn points | — | Refresh the list, teleport to a point, or delete it after confirming. Run `/deciserver playerspawn add` to add a point at your position. |
-| Players | Clans and administration | — | Manage clans, bases, owners, capture windows, prices, limits, and the operation journal. [Clans and recovery](clan-administration.md) |
+| Players | Clans and administration | — | Find clans, open their details, change verification status, and review settings and the journal. [Clans and recovery](clan-administration.md) |
 | Debug | Hitbox Editor | Creative mode | Adjust player hitbox sizes and offsets. The server validates edits, saves the profile, and sends it to clients. |
 | Debug | Skeletal box debugging | Creative mode | Open the hitbox visualization and editor. In Creative, **F6** also opens the local debug screen. Saving hitboxes requires server-side permission. |
 
